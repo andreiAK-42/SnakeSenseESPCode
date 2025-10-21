@@ -66,15 +66,14 @@ void read_sensor_and_send_data() {
   if (connectToAnyWiFi()) {
     Serial.println("\nConnected to WiFi!");
     
-   /* float dht_temperature = dht_read_temperature();
+    float dht_temperature = dht_read_temperature();
     float dht_humidity = dht_read_humidity();
     float bmp_temperature = bmp_read_temperature();
     float bmp_pressure = bmp_read_pressure();
     float mq_analog = mq_read_analog();
     float mq_ppm = mq_read_gas_ppm();*/
     
-   // sendDataToServer(dht_temperature, dht_humidity, bmp_pressure, bmp_temperature, mq_ppm, mq_analog);  
-   sendDataToServer(27.0, 50, 101560, 26.8, 440, 1900);
+    sendDataToServer(dht_temperature, dht_humidity, bmp_pressure, bmp_temperature, mq_ppm, mq_analog);  
   } else {
     Serial.println("\nFailed to connect to WiFi!");
   }
@@ -146,7 +145,7 @@ void sendDataToServer(float dht_temp, float dht_hum, long bmp_pressure, float bm
   doc["bmp_pressure"] = bmp_pressure;
   doc["bmp_temperature"] = bmp_temp;
   doc["mq_ppm"] = mq_ppm;
-  doc["mq_bad_data"] = mq_ppm;
+  doc["mq_bad_data"] = mq_bad_data;
   
   String jsonString;
   serializeJson(doc, jsonString);

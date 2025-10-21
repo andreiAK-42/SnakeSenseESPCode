@@ -71,7 +71,7 @@ void read_sensor_and_send_data() {
     float bmp_temperature = bmp_read_temperature();
     float bmp_pressure = bmp_read_pressure();
     float mq_analog = mq_read_analog();
-    float mq_ppm = mq_read_gas_ppm();*/
+    float mq_ppm = mq_read_gas_ppm();
     
     sendDataToServer(dht_temperature, dht_humidity, bmp_pressure, bmp_temperature, mq_ppm, mq_analog);  
   } else {
